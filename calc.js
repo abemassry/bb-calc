@@ -16,18 +16,20 @@
     head.appendChild(lb2);
     setTimeout(function() {
       $(document).ready(function() {
+        
         $.featherlight($('<div id='running-calc'>Running calc</div>'));
         $(".participant-column-image + div a").each(function(i) {
           $.get($(this).attr('href')+'/activity_feed', function(data) {
             var shakeology = $(data).find('.panel.panel-default .panel-body .activity-type-shakeology');
             $(shakeology).each(function(index) {
               console.log($(this).find('.activity-type-title').text() + ' , ' + $(this).find('.activity-created-at').text());
-                });
+              $('#running-calc').append('<h4>'+$(this).find('.activity-type-title').text()+'</h4>');
             });
-            console.log($(anchors[i]).text()+" , "+$(anchors[i]).attr('href'));
-        }
+          });
+        });
         
         console.log($('.language-javascript.hljs'));
+        
       });
     }, 1000);
   }, 1000);
