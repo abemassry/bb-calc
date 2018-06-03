@@ -18,6 +18,7 @@
       $(document).ready(function() {
         
         $.featherlight($('<div id='running-calc'>Running calc</div>'));
+        console.log('started');
         $(".participant-column-image + div a").each(function(i) {
           $.get($(this).attr('href')+'/activity_feed', function(data) {
             var shakeology = $(data).find('.panel.panel-default .panel-body .activity-type-shakeology');
