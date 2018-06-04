@@ -20,11 +20,14 @@
         $.featherlight($('<div id="running-calc">Running calc</div>'));
         console.log('started');
         $(".participant-column-image + div a").each(function(i) {
+          var person = $(this).text();
           $.get($(this).attr('href')+'/activity_feed', function(data) {
             var shakeology = $(data).find('.panel.panel-default .panel-body .activity-type-shakeology');
             $(shakeology).each(function(index) {
               console.log($(this).find('.activity-type-title').text() + ' , ' + $(this).find('.activity-created-at').text());
-              $('#running-calc').append('<h4>'+$(this).find('.activity-type-title').text()+'</h4>');
+              var shake = $(this).find('.activity-type-title').text();
+              var timestamp = $(this).find('.activity-created-at').text();
+              $('#running-calc').append('<h4>' + person + ': '+ shake +' at '+ timestamp + ' </h4>');
             });
           });
         });
