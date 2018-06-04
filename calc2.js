@@ -17,7 +17,7 @@
     setTimeout(function() {
       $(document).ready(function() {
         
-        $.featherlight($('<div id='running-calc'>Running calc</div>'));
+        $.featherlight($('<div id="running-calc">Running calc</div>'));
         console.log('started');
         $(".participant-column-image + div a").each(function(i) {
           $.get($(this).attr('href')+'/activity_feed', function(data) {
