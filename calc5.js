@@ -9,6 +9,10 @@
   ss2.rel='stylesheet';
   ss2.href='https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.css';
   head.appendChild(ss2);
+  var lux = document.createElement('script');
+  lux.type='text/javascript';
+  lux.src='https://rawgit.com/moment/luxon/gh-pages/global/luxon.min.js';
+  head.appendChild(lux);
   setTimeout(function() {
     var lb2 = document.createElement('script');
     lb2.type='text/javascript';
@@ -27,7 +31,18 @@
               console.log($(this).find('.activity-type-title').text() + ' , ' + $(this).find('.activity-created-at').text());
               var shake = $(this).find('.activity-type-title').text();
               var timestamp = $(this).find('.activity-created-at').text();
-              $('#running-calc').append('<h4>' + person + ': '+ shake +' at '+ timestamp + ' </h4>');
+              var DateTime = luxon.DateTime;
+              var two = DateTime.local().minus({ days: 2 }).toFormat('LLL dd');
+              var three = DateTime.local().minus({ days: 3 }).toFormat('LLL dd');
+              var four = DateTime.local().minus({ days: 4 }).toFormat('LLL dd');
+              var five = DateTime.local().minus({ days: 5 }).toFormat('LLL dd');
+              var six = DateTime.local().minus({ days: 6 }).toFormat('LLL dd');
+              var seven = DateTime.local().minus({ days: 7 }).toFormat('LLL dd');
+              if ( ! (timestamp.match(/Today/) || timestamp.match(/Yesterday/) || timestamp.match(two) || timestamp.match(three) || timestamp.match(four) || timestamp.match(five) || timestamp.match(six) || timestamp.match(seven)) {
+                // dont display
+              } else {
+                $('#running-calc').append('<h4>' + person + ': '+ shake +' at '+ timestamp + ' </h4>');
+              }
             });
           });
         });
