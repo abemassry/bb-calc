@@ -27,6 +27,7 @@
           var person = $(this).text();
           $.get($(this).attr('href')+'/activity_feed', function(data) {
             var shakeology = $(data).find('.panel.panel-default .panel-body .activity-type-shakeology');
+            var shakeArray = [];
             $(shakeology).each(function(index) {
               console.log($(this).find('.activity-type-title').text() + ' , ' + $(this).find('.activity-created-at').text());
               var shake = $(this).find('.activity-type-title').text();
@@ -38,18 +39,13 @@
               var five = DateTime.local().minus({ days: 5 }).toFormat('LLL dd');
               var six = DateTime.local().minus({ days: 6 }).toFormat('LLL dd');
               var seven = DateTime.local().minus({ days: 7 }).toFormat('LLL dd');
-              var lastDayStamp = ''
-              if (typeof dayStamp !== 'undefined') {
-                lastDayStamp = dayStamp;
-              }
               var dayStamp = timestamp.split(' at ')[0];
-              if (dayStamp !== lastDayStamp) { 
-                if ( ! (timestamp.match(/Today/) || timestamp.match(/Yesterday/) || timestamp.match(two) || timestamp.match(three) || timestamp.match(four) || timestamp.match(five) || timestamp.match(six) || timestamp.match(seven))) {
-                  // dont display
-                } else {
+              if ( ! (timestamp.match(/Today/) || timestamp.match(/Yesterday/) || timestamp.match(two) || timestamp.match(three) || timestamp.match(four) || timestamp.match(five) || timestamp.match(six) || timestamp.match(seven))) {
+                // dont display
+              } else {
 
-                  $('#running-calc').append('<h4>' + person + ': '+ shake +' at '+ timestamp + ' </h4>');
-                }
+                $('#running-calc').append('<h4>' + person + ': '+ shake +' at '+ timestamp + ' </h4>');
+                shakeArray.push(daystamp);
               }
             });
           });
