@@ -38,10 +38,18 @@
               var five = DateTime.local().minus({ days: 5 }).toFormat('LLL dd');
               var six = DateTime.local().minus({ days: 6 }).toFormat('LLL dd');
               var seven = DateTime.local().minus({ days: 7 }).toFormat('LLL dd');
-              if ( ! (timestamp.match(/Today/) || timestamp.match(/Yesterday/) || timestamp.match(two) || timestamp.match(three) || timestamp.match(four) || timestamp.match(five) || timestamp.match(six) || timestamp.match(seven))) {
-                // dont display
-              } else {
-                $('#running-calc').append('<h4>' + person + ': '+ shake +' at '+ timestamp + ' </h4>');
+              var lastDayStamp = ''
+              if (typeof dayStamp !== 'undefined') {
+                lastDayStamp = dayStamp;
+              }
+              var dayStamp = timestamp.split(' at ')[0];
+              if (dayStamp !== lastDayStamp) { 
+                if ( ! (timestamp.match(/Today/) || timestamp.match(/Yesterday/) || timestamp.match(two) || timestamp.match(three) || timestamp.match(four) || timestamp.match(five) || timestamp.match(six) || timestamp.match(seven))) {
+                  // dont display
+                } else {
+
+                  $('#running-calc').append('<h4>' + person + ': '+ shake +' at '+ timestamp + ' </h4>');
+                }
               }
             });
           });
