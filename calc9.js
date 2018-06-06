@@ -43,9 +43,17 @@
               if ( ! (timestamp.match(/Today/) || timestamp.match(/Yesterday/) || timestamp.match(two) || timestamp.match(three) || timestamp.match(four) || timestamp.match(five) || timestamp.match(six) || timestamp.match(seven))) {
                 // dont display
               } else {
-
-                $('#running-calc').append('<h4>' + person + ': '+ shake +' at '+ timestamp + ' </h4>');
-                shakeArray.push(daystamp);
+                var isDouble = false;
+                for (var i=0; i++; i<shakeArray.length) {
+                  if (dayStamp[i] === dayStamp) {
+                    console.log('2 in 1 day');
+                    isDouble = true;
+                  }
+                }
+                if (isDouble === false) {
+                  $('#running-calc').append('<h4>' + person + ': '+ shake +' at '+ timestamp + ' </h4>');
+                  shakeArray.push(dayStamp);
+                }
               }
             });
           });
