@@ -1,4 +1,5 @@
 (function() {
+  var shakes = {};
   var head = document.getElementsByTagName('head')[0];
   var jq2 = document.createElement('script');
   jq2.type='text/javascript';
@@ -25,9 +26,10 @@
         console.log('started');
         $(".participant-column-image + div a").each(function(i) {
           var person = $(this).text();
+          shakes[person] = [];
           $.get($(this).attr('href')+'/activity_feed', function(data) {
             var shakeology = $(data).find('.panel.panel-default .panel-body .activity-type-shakeology');
-            var shakeArray = [];
+            
             $(shakeology).each(function(index) {
               console.log($(this).find('.activity-type-title').text() + ' , ' + $(this).find('.activity-created-at').text());
               var shake = $(this).find('.activity-type-title').text();
@@ -44,15 +46,16 @@
                 // dont display
               } else {
                 var isDouble = false;
-                for (var i=0; i++; i<shakeArray.length) {
-                  if (shakeArray[i] === dayStamp) {
+                for (var i=0; i++; i<shakes[person].length) {
+                  if (shakes[person][i] === dayStamp) {
                     console.log('2 in 1 day');
                     isDouble = true;
                   }
                 }
                 if (isDouble === false) {
                   $('#running-calc').append('<h4>' + person + ': '+ shake +' at '+ timestamp + ' </h4>');
-                  shakeArray.push(dayStamp);
+                  shakes[person].push(dayStamp);
+                  console.log(shakes);
                 }
               }
             });
