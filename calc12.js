@@ -41,7 +41,7 @@
               var five = DateTime.local().minus({ days: 5 }).toFormat('LLL dd');
               var six = DateTime.local().minus({ days: 6 }).toFormat('LLL dd');
               var seven = DateTime.local().minus({ days: 7 }).toFormat('LLL dd');
-              var dayStamp = timestamp.split(' at ')[0];
+              var dayStamp = timestamp.split(' at ')[0].split('Created:')[1];
               if ( ! (timestamp.match(/Today/) || timestamp.match(/Yesterday/) || timestamp.match(two) || timestamp.match(three) || timestamp.match(four) || timestamp.match(five) || timestamp.match(six) || timestamp.match(seven))) {
                 // dont display
               } else {
