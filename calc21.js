@@ -74,6 +74,8 @@
                   $('#running-calc').append('<h4>' + peopleArray[i] + ' shakes: '+ shakes[peopleArray[i]] +'</h4>');
                 }
               }
+              console.log(peopleTotal);
+              console.log(requestCounter);
               console.log(shakes);
             });
           });
