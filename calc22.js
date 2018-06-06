@@ -80,7 +80,11 @@
             });
           });
         });
-        
+        setTimeout(function() {
+          for (var i = 0; i++; i<peopleTotal) {
+            $('#running-calc').append('<h4>' + peopleArray[i] + ' shakes: '+ shakes[peopleArray[i]] +'</h4>');
+          }
+        }, 10000);
         console.log($('.language-javascript.hljs'));
         
       });
