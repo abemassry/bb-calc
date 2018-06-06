@@ -1,5 +1,19 @@
 (function() {
   var shakes = {};
+  function uniq_fast(a) {
+    var seen = {};
+    var out = [];
+    var len = a.length;
+    var j = 0;
+    for(var i = 0; i < len; i++) {
+         var item = a[i];
+         if(seen[item] !== 1) {
+               seen[item] = 1;
+               out[j++] = item;
+         }
+    }
+    return out;
+  }
   var head = document.getElementsByTagName('head')[0];
   var jq2 = document.createElement('script');
   jq2.type='text/javascript';
@@ -46,6 +60,7 @@
                 // dont display
               } else {
                 var isDouble = false;
+                
                 for (var i=0; i++; i<shakes[person].length) {
                   if (shakes[person][i] === dayStamp) {
                     console.log('2 in 1 day');
@@ -53,8 +68,11 @@
                   }
                 }
                 if (isDouble === false) {
-                  $('#running-calc').append('<h4>' + person + ': '+ shake +' at '+ timestamp + ' </h4>');
+                  
                   shakes[person].push(dayStamp);
+                  console.log(shakes);
+                  shakes[person] = uniq_fast(shakes[person]);
+                  $('#running-calc').append('<h4>' + person + ': '+ shake +' at '+ timestamp + ' </h4>');
                   console.log(shakes);
                 }
               }
