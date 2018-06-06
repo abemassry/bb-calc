@@ -45,7 +45,7 @@
               } else {
                 var isDouble = false;
                 for (var i=0; i++; i<shakeArray.length) {
-                  if (dayStamp[i] === dayStamp) {
+                  if (shakeArray[i] === dayStamp) {
                     console.log('2 in 1 day');
                     isDouble = true;
                   }
