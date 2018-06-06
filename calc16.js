@@ -38,6 +38,9 @@
         
         $.featherlight($('<div id="running-calc">Running calc</div>'));
         console.log('started');
+        var people = $(".participant-column-image + div a");
+        console.log(people);
+        console.log(people.length);
         $(".participant-column-image + div a").each(function(i) {
           var person = $(this).text();
           shakes[person] = [];
@@ -59,21 +62,11 @@
               if ( ! (timestamp.match(/Today/) || timestamp.match(/Yesterday/) || timestamp.match(two) || timestamp.match(three) || timestamp.match(four) || timestamp.match(five) || timestamp.match(six) || timestamp.match(seven))) {
                 // dont display
               } else {
-                var isDouble = false;
-                
-                for (var i=0; i++; i<shakes[person].length) {
-                  if (shakes[person][i] === dayStamp) {
-                    console.log('2 in 1 day');
-                    isDouble = true;
-                  }
-                }
-                if (isDouble === false) {
-                  
-                  shakes[person].push(dayStamp);
-                  console.log(shakes);
-                  shakes[person] = uniq_fast(shakes[person]);
-                  $('#running-calc').append('<h4>' + person + ': '+ shake +' at '+ timestamp + ' </h4>');
-                  console.log(shakes);
+                shakes[person].push(dayStamp);
+                console.log(shakes);
+                shakes[person] = uniq_fast(shakes[person]);
+                $('#running-calc').append('<h4>' + person + ': '+ shake +' at '+ timestamp + ' </h4>');
+                console.log(shakes);
                 }
               }
             });
