@@ -35,12 +35,12 @@
               var shake = $(this).find('.activity-type-title').text();
               var timestamp = $(this).find('.activity-created-at').text();
               var DateTime = luxon.DateTime;
-              var two = DateTime.local().minus({ days: 2 }).toFormat('LLL dd');
-              var three = DateTime.local().minus({ days: 3 }).toFormat('LLL dd');
-              var four = DateTime.local().minus({ days: 4 }).toFormat('LLL dd');
-              var five = DateTime.local().minus({ days: 5 }).toFormat('LLL dd');
-              var six = DateTime.local().minus({ days: 6 }).toFormat('LLL dd');
-              var seven = DateTime.local().minus({ days: 7 }).toFormat('LLL dd');
+              var two = DateTime.local().minus({ days: 2 }).toFormat('LLL d');
+              var three = DateTime.local().minus({ days: 3 }).toFormat('LLL d');
+              var four = DateTime.local().minus({ days: 4 }).toFormat('LLL d');
+              var five = DateTime.local().minus({ days: 5 }).toFormat('LLL d');
+              var six = DateTime.local().minus({ days: 6 }).toFormat('LLL d');
+              var seven = DateTime.local().minus({ days: 7 }).toFormat('LLL d');
               var dayStamp = timestamp.split(' at ')[0].split('Created:')[1].trim();
               if ( ! (timestamp.match(/Today/) || timestamp.match(/Yesterday/) || timestamp.match(two) || timestamp.match(three) || timestamp.match(four) || timestamp.match(five) || timestamp.match(six) || timestamp.match(seven))) {
                 // dont display
