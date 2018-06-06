@@ -67,7 +67,6 @@
                 shakes[person] = uniq_fast(shakes[person]);
                 $('#running-calc').append('<h4>' + person + ': '+ shake +' at '+ timestamp + ' </h4>');
                 console.log(shakes);
-                }
               }
             });
           });
