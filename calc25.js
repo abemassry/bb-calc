@@ -39,8 +39,6 @@
         
         $.featherlight($('<div id="running-calc">Running calc</div>'));
         console.log('started');
-        var people = $(".participant-column-image + div a");
-        var peopleTotal = people.length;
         var requestCounter = 0;
         $(".participant-column-image + div a").each(function(i) {
           var person = $(this).text();
@@ -80,8 +78,9 @@
         });
         setTimeout(function() {
           console.log('ran the wait');
-          for (var i = 0; i++; i<peopleTotal) {
-            console.log(shakes);
+          console.log(peopleArray);
+          console.log(shakes);
+          for (var i = 0; i++; i<peopleArray.length) {
             $('#running-calc').append('<h4>' + peopleArray[i] + ' shakes: '+ shakes[peopleArray[i]] +'</h4>');
           }
         }, 10000);
