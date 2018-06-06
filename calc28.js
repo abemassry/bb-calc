@@ -73,7 +73,7 @@
           console.log('ran the wait');
           console.log(peopleArray);
           console.log(shakes);
-          for (var i = 0; i++; i<peopleArray.length) {
+          for (var i = 0; i<peopleArray.length; i++) {
             $('#running-calc').append('<h4>' + peopleArray[i] +'</h4>'); //+ ' shakes: '+ shakes[peopleArray[i]] +'</h4>');
             console.log(peopleArray[i]);
           }
