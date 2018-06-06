@@ -66,7 +66,6 @@
                 // dont display
               } else {
                 shakes[person].push(dayStamp);
-                console.log(shakes);
                 shakes[person] = uniq_fast(shakes[person]);
               }
               if (requestCounter === peopleTotal) {
@@ -76,12 +75,12 @@
               }
               console.log(peopleTotal);
               console.log(requestCounter);
-              console.log(shakes);
             });
           });
         });
         setTimeout(function() {
           for (var i = 0; i++; i<peopleTotal) {
+            console.log(shakes);
             $('#running-calc').append('<h4>' + peopleArray[i] + ' shakes: '+ shakes[peopleArray[i]] +'</h4>');
           }
         }, 10000);
