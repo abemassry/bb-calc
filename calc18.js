@@ -1,5 +1,6 @@
 (function() {
   var shakes = {};
+  var peopleArray = [];
   function uniq_fast(a) {
     var seen = {};
     var out = [];
@@ -39,12 +40,14 @@
         $.featherlight($('<div id="running-calc">Running calc</div>'));
         console.log('started');
         var people = $(".participant-column-image + div a");
-        console.log(people);
-        console.log(people.length);
+        var peopleTotal = people.length;
+        var requestCounter = 0;
         $(".participant-column-image + div a").each(function(i) {
           var person = $(this).text();
+          peopleArray.push(person);
           shakes[person] = [];
           $.get($(this).attr('href')+'/activity_feed', function(data) {
+            requestCounter++;
             var shakeology = $(data).find('.panel.panel-default .panel-body .activity-type-shakeology');
             
             $(shakeology).each(function(index) {
@@ -65,7 +68,11 @@
                 shakes[person].push(dayStamp);
                 console.log(shakes);
                 shakes[person] = uniq_fast(shakes[person]);
-                $('#running-calc').append('<h4>' + person + ': '+ shake +' at '+ timestamp + ' </h4>');
+                if (requestCounter === peopleTotal) {
+                  for (var i = 0; i++; i<peopleTotal) {
+                    $('#running-calc').append('<h4>' + peopleArray[i] + ' shakes: '+ shakes[peopleArray[i] +'</h4>');
+                  }
+                }
                 console.log(shakes);
               }
             });
