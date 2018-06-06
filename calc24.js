@@ -79,6 +79,7 @@
           });
         });
         setTimeout(function() {
+          console.log('ran the wait');
           for (var i = 0; i++; i<peopleTotal) {
             console.log(shakes);
             $('#running-calc').append('<h4>' + peopleArray[i] + ' shakes: '+ shakes[peopleArray[i]] +'</h4>');
