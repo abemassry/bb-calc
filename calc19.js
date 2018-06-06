@@ -70,7 +70,7 @@
                 shakes[person] = uniq_fast(shakes[person]);
                 if (requestCounter === peopleTotal) {
                   for (var i = 0; i++; i<peopleTotal) {
-                    $('#running-calc').append('<h4>' + peopleArray[i] + ' shakes: '+ shakes[peopleArray[i] +'</h4>');
+                    $('#running-calc').append('<h4>' + peopleArray[i] + ' shakes: '+ shakes[peopleArray[i]] +'</h4>');
                   }
                 }
                 console.log(shakes);
