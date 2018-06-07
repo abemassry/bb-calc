@@ -96,10 +96,17 @@
           console.log(workouts);
           var shakeArray = [];
           var workoutArray = [];
+          var pointsArray = [];
           for (var i = 0; i<peopleArray.length; i++) {
             shakeArray.push(shakes[peopleArray[i]].length);
+            var shakepoints = shakes[peopleArray[i]].length * 5;
+            workoutArray.push(workouts[peopleArray[i]].length);
+            var workoutpoints = workouts[peopleArray[i]].length * 3;
+            pointsArray.push(shakepoints + workoutpoints);
           }
-          console.log(shakeArray);
+          console.log('workoutArray', workoutArray);
+          console.log('shakeArray', shakeArray);
+          console.log('pointsArray', pointsArray);
           for (var i = 0; i<peopleArray.length; i++) {
             $('#running-calc').append('<h4>' + peopleArray[i] +' (shakes): '+shakes[peopleArray[i]].length +'</h4>');
             console.log(peopleArray[i]+' (shakes): '+shakes[peopleArray[i]].length);
