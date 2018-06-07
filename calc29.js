@@ -75,7 +75,7 @@
           console.log(shakes);
           for (var i = 0; i<peopleArray.length; i++) {
             $('#running-calc').append('<h4>' + peopleArray[i] +'</h4>'); //+ ' shakes: '+ shakes[peopleArray[i]] +'</h4>');
-            console.log(peopleArray[i]);
+            console.log(peopleArray[i]+' (shakes): '+shakes[peopleArray[i]].length);
           }
         }, 10000);
         console.log($('.language-javascript.hljs'));
