@@ -107,8 +107,19 @@
           console.log('workoutArray', workoutArray);
           console.log('shakeArray', shakeArray);
           console.log('pointsArray', pointsArray);
+          var zip = [];
+          for (var i = 0; i < peopleArray.length; i++) {
+              zip.push([pointsArray[i], peopleArray[i]]);
+          }
+
+          zip.sort(function (a, b) { return a[0] - b[0]; });
+
+          for (var i = 0; i < zip.length; i++) {
+              pointsArray[i] = zip[i][0];
+              peopleArray[i] = zip[i][1];
+          }
           for (var i = 0; i<peopleArray.length; i++) {
-            $('#running-calc').append('<h4>' + peopleArray[i] +' (shakes): '+shakes[peopleArray[i]].length +'</h4>');
+            $('#running-calc').append('<h4>' + peopleArray[i] +'(points):'+pointsArray[i]+', (shakes): '+shakes[peopleArray[i]].length +', (workouts): '+workouts[peopleArray[i]].length+'</h4>');
             console.log(peopleArray[i]+' (shakes): '+shakes[peopleArray[i]].length);
           }
         }, 10000);
