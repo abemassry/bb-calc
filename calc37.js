@@ -50,7 +50,6 @@
             requestCounter++;
             var shakeology = $(data).find('.panel.panel-default .panel-body .activity-type-shakeology');
             var workoutpage = $(data).find('.panel.panel-default .panel-body .activity-type-workout');
-            // ------
             $(shakeology).each(function(index) {
               console.log($(this).find('.activity-type-title').text() + ' , ' + $(this).find('.activity-created-at').text());
               var shake = $(this).find('.activity-type-title').text();
@@ -70,13 +69,33 @@
                 shakes[person] = uniq_fast(shakes[person]);
               }
             });
+            $(workoutpage).each(function(index) {
+              console.log($(this).find('.activity-type-title').text() + ' , ' + $(this).find('.activity-created-at').text());
+              var workout = $(this).find('.activity-type-title').text();
+              var timestamp = $(this).find('.activity-created-at').text();
+              var DateTime = luxon.DateTime;
+              var two = DateTime.local().minus({ days: 2 }).toFormat('LLL d');
+              var three = DateTime.local().minus({ days: 3 }).toFormat('LLL d');
+              var four = DateTime.local().minus({ days: 4 }).toFormat('LLL d');
+              var five = DateTime.local().minus({ days: 5 }).toFormat('LLL d');
+              var six = DateTime.local().minus({ days: 6 }).toFormat('LLL d');
+              var seven = DateTime.local().minus({ days: 7 }).toFormat('LLL d');
+              var dayStamp = timestamp.split(' at ')[0].split('Created:')[1].trim();
+              if ( ! (timestamp.match(/Yesterday/) || timestamp.match(two) || timestamp.match(three) || timestamp.match(four) || timestamp.match(five) || timestamp.match(six) || timestamp.match(seven))) {
+                // dont display
+              } else {
+                workouts[person].push(dayStamp);
+              }
+            });
           });
         });
         setTimeout(function() {
           console.log('ran the wait');
           console.log(peopleArray);
           console.log(shakes);
+          console.log(workouts);
           var shakeArray = [];
+          var workoutArray = [];
           for (var i = 0; i<peopleArray.length; i++) {
             shakeArray.push(shakes[peopleArray[i]].length);
           }
