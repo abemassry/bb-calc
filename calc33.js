@@ -73,24 +73,11 @@
           console.log('ran the wait');
           console.log(peopleArray);
           console.log(shakes);
-          // temporary array holds objects with position and sort-value
-          var mapped = peopleArray.map(function(el, i) {
-            return { index: i, value: shakes[peopleArray[i]].length };
-          });
-          mapped.sort(function(a, b) {
-            if (a.value > b.value) {
-              return 1;
-            }
-            if (a.value < b.value) {
-              return -1;
-            }
-            return 0;
-          });
-
-          // container for the resulting order
-          var peopleArray = mapped.map(function(el){
-            return peopleArray[el.index];
-          });                                
+          var shakeArray = [];
+          for (var i = 0; i<peopleArray.length; i++) {
+            shakeArray.push(shakes[peopleArray[i].length]);
+          }
+          console.log(shakeArray);
           for (var i = 0; i<peopleArray.length; i++) {
             $('#running-calc').append('<h4>' + peopleArray[i] +' (shakes): '+shakes[peopleArray[i]].length +'</h4>');
             console.log(peopleArray[i]+' (shakes): '+shakes[peopleArray[i]].length);
