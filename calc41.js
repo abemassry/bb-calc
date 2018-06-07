@@ -112,7 +112,7 @@
               zip.push([pointsArray[i], peopleArray[i]]);
           }
 
-          zip.sort(function (a, b) { return a[0] - b[0]; });
+          zip.sort(function (a, b) { return b[0] - a[0]; });
 
           for (var i = 0; i < zip.length; i++) {
               pointsArray[i] = zip[i][0];
