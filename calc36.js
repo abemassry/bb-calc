@@ -1,5 +1,6 @@
 (function() {
   var shakes = {};
+  var workouts = {};
   var peopleArray = [];
   function uniq_fast(a) {
     var seen = {};
@@ -44,10 +45,12 @@
           var person = $(this).text();
           peopleArray.push(person);
           shakes[person] = [];
+          workouts[person] = [];
           $.get($(this).attr('href')+'/activity_feed', function(data) {
             requestCounter++;
             var shakeology = $(data).find('.panel.panel-default .panel-body .activity-type-shakeology');
-            
+            var workoutpage = $(data).find('.panel.panel-default .panel-body .activity-type-workout');
+            // ------
             $(shakeology).each(function(index) {
               console.log($(this).find('.activity-type-title').text() + ' , ' + $(this).find('.activity-created-at').text());
               var shake = $(this).find('.activity-type-title').text();
