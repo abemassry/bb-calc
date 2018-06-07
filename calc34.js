@@ -75,7 +75,7 @@
           console.log(shakes);
           var shakeArray = [];
           for (var i = 0; i<peopleArray.length; i++) {
-            shakeArray.push(shakes[peopleArray[i].length]);
+            shakeArray.push(shakes[peopleArray[i]].length]);
           }
           console.log(shakeArray);
           for (var i = 0; i<peopleArray.length; i++) {
