@@ -66,7 +66,7 @@
                 // dont display
               } else {
                 sw[person].shakes.push(dayStamp);
-                sw[person].shakes = uniq_fast(shakes[person]);
+                sw[person].shakes = uniq_fast(sw[person].shakes);
               }
             });
             $(workoutpage).each(function(index) {
@@ -136,11 +136,13 @@
             for (var i = 0; i < daysArray.length; i++) {
               var shake = '';
               var workout = '';
-              if (daysArray[i] === sw[person].shakes[i]) {
-                shake = 'shake';
-              }
-              if (daysArray[i] === sw[person].workouts[i]) {
-                workout = 'workout';
+              for (var j = 0; j < sw[person].shakes.length; j++) {
+                if (daysArray[i] === sw[person].shakes[j]) {
+                  shake = 'shake';
+                }
+                if (daysArray[i] === sw[person].workouts[j]) {
+                  workout = 'workout';
+                }
               }
               $('#running-calc').append('<td> '+shake+' <br /> '+workout+' </td>');
             }
