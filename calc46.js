@@ -60,7 +60,7 @@
               var five = DateTime.local().minus({ days: 5 }).toFormat('LLL d');
               var six = DateTime.local().minus({ days: 6 }).toFormat('LLL d');
               var seven = DateTime.local().minus({ days: 7 }).toFormat('LLL d');
-              daysArray = ["yesterday", two, three, four, five, six, seven];
+              daysArray = ["Yesterday", two, three, four, five, six, seven];
               var dayStamp = timestamp.split(' at ')[0].split('Created:')[1].trim();
               if ( ! (timestamp.match(/Yesterday/) || timestamp.match(two) || timestamp.match(three) || timestamp.match(four) || timestamp.match(five) || timestamp.match(six) || timestamp.match(seven))) {
                 // dont display
@@ -144,7 +144,7 @@
                   workout = 'workout';
                 }
               }
-              $('#running-calc').append('<td> '+shake+' <br /> '+workout+' </td>');
+              $('#running-calc').append('<td> '+shake+' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /> '+workout+' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>');
             }
             $('#running-calc').append('</tr>');
           }
