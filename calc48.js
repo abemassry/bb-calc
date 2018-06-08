@@ -144,7 +144,7 @@
                   workout++;
                 }
               }
-              $('#running-calc').append('<td> '+shake+' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /> workouts ('+workout+') &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>');
+              $('#running-calc').append('<td> '+shake+' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /> workouts ('+workout+') &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><br /><br /></td>');
             }
             $('#running-calc').append('</tr>');
           }
