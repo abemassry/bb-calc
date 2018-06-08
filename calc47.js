@@ -135,16 +135,16 @@
             $('#running-calc').append('<td>'+ person +'</td>');
             for (var i = 0; i < daysArray.length; i++) {
               var shake = '';
-              var workout = '';
+              var workout = 0;
               for (var j = 0; j < sw[person].shakes.length; j++) {
                 if (daysArray[i] === sw[person].shakes[j]) {
                   shake = 'shake';
                 }
                 if (daysArray[i] === sw[person].workouts[j]) {
-                  workout = 'workout';
+                  workout++;
                 }
               }
-              $('#running-calc').append('<td> '+shake+' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /> '+workout+' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>');
+              $('#running-calc').append('<td> '+shake+' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /> workouts ('+workout+') &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>');
             }
             $('#running-calc').append('</tr>');
           }
