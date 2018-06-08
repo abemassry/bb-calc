@@ -1,6 +1,5 @@
 (function() {
-  var shakes = {};
-  var workouts = {};
+  var sw = {};
   var peopleArray = [];
   var daysArray = [];
   function uniq_fast(a) {
@@ -45,8 +44,7 @@
         $(".participant-column-image + div a").each(function(i) {
           var person = $(this).text();
           peopleArray.push(person);
-          shakes[person] = [];
-          workouts[person] = [];
+          sw[person] = { shakes: [], workouts: [] };
           $.get($(this).attr('href')+'/activity_feed', function(data) {
             requestCounter++;
             var shakeology = $(data).find('.panel.panel-default .panel-body .activity-type-shakeology');
@@ -67,8 +65,8 @@
               if ( ! (timestamp.match(/Yesterday/) || timestamp.match(two) || timestamp.match(three) || timestamp.match(four) || timestamp.match(five) || timestamp.match(six) || timestamp.match(seven))) {
                 // dont display
               } else {
-                shakes[person].push(dayStamp);
-                shakes[person] = uniq_fast(shakes[person]);
+                sw[person].shakes.push(dayStamp);
+                sw[person].shakes = uniq_fast(shakes[person]);
               }
             });
             $(workoutpage).each(function(index) {
@@ -86,7 +84,7 @@
               if ( ! (timestamp.match(/Yesterday/) || timestamp.match(two) || timestamp.match(three) || timestamp.match(four) || timestamp.match(five) || timestamp.match(six) || timestamp.match(seven))) {
                 // dont display
               } else {
-                workouts[person].push(dayStamp);
+                sw[person].workouts.push(dayStamp);
               }
             });
           });
@@ -94,16 +92,15 @@
         setTimeout(function() {
           console.log('ran the wait');
           console.log(peopleArray);
-          console.log(shakes);
-          console.log(workouts);
+          console.log(sw);
           var shakeArray = [];
           var workoutArray = [];
           var pointsArray = [];
           for (var i = 0; i<peopleArray.length; i++) {
-            shakeArray.push(shakes[peopleArray[i]].length);
-            var shakepoints = shakes[peopleArray[i]].length * 5;
-            workoutArray.push(workouts[peopleArray[i]].length);
-            var workoutpoints = workouts[peopleArray[i]].length * 5;
+            shakeArray.push(sw[peopleArray[i]].shakes.length);
+            var shakepoints = sw[peopleArray[i]].shakes.length * 5;
+            workoutArray.push(sw[peopleArray[i]].workouts.length);
+            var workoutpoints = sw[peopleArray[i]].workouts.length * 5;
             pointsArray.push(shakepoints + workoutpoints);
           }
           console.log('workoutArray', workoutArray);
@@ -121,8 +118,8 @@
               peopleArray[i] = zip[i][1];
           }
           for (var i = 0; i<peopleArray.length; i++) {
-            $('#running-calc').append('<h4>' + peopleArray[i] +'(points):'+pointsArray[i]+', (shakes): '+shakes[peopleArray[i]].length +', (workouts): '+workouts[peopleArray[i]].length+'</h4>');
-            console.log(peopleArray[i]+' (shakes): '+shakes[peopleArray[i]].length);
+            $('#running-calc').append('<h4>' + peopleArray[i] +'(points):'+pointsArray[i]+', (shakes): '+sw[peopleArray[i]].shakes.length +', (workouts): '+sw[peopleArray[i]].workouts.length+'</h4>');
+            console.log(peopleArray[i]+' (shakes): '+sw[peopleArray[i]].shakes.length);
           }
           $('#loading-spinner').hide();
           $('#running-calc').append('<table>');
@@ -132,15 +129,22 @@
             $('#running-calc').append('<td>'+daysArray[i]+'</td>');
           }
           $('#running-calc').append('</thead>');
-          for (var person in shakes) {
+          for (var person in sw) {
             console.log(person);
             $('#running-calc').append('<tr>');
             $('#running-calc').append('<td>'+ person +'</td>');
             for (var i = 0; i < daysArray.length; i++) {
-              if (daysArray[i] === shakes[person][i]) {
-                $('#running-calc').append('<td>shake</td>');
+              var shake = '';
+              var workout = '';
+              if (daysArray[i] === sw[person].shakes[i]) {
+                shake = 'shake';
               }
+              if (daysArray[i] === sw[person].workouts[i]) {
+                workout = 'workout';
+              }
+              $('#running-calc').append('<td> '+shake+' <br /> '+workout+' </td>');
             }
+            $('#running-calc').append('</tr>');
           }
           
           
