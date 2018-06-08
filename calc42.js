@@ -2,6 +2,7 @@
   var shakes = {};
   var workouts = {};
   var peopleArray = [];
+  var daysArray = [];
   function uniq_fast(a) {
     var seen = {};
     var out = [];
@@ -61,6 +62,7 @@
               var five = DateTime.local().minus({ days: 5 }).toFormat('LLL d');
               var six = DateTime.local().minus({ days: 6 }).toFormat('LLL d');
               var seven = DateTime.local().minus({ days: 7 }).toFormat('LLL d');
+              daysArray = [two, three, four, five, six, seven];
               var dayStamp = timestamp.split(' at ')[0].split('Created:')[1].trim();
               if ( ! (timestamp.match(/Yesterday/) || timestamp.match(two) || timestamp.match(three) || timestamp.match(four) || timestamp.match(five) || timestamp.match(six) || timestamp.match(seven))) {
                 // dont display
@@ -101,7 +103,7 @@
             shakeArray.push(shakes[peopleArray[i]].length);
             var shakepoints = shakes[peopleArray[i]].length * 5;
             workoutArray.push(workouts[peopleArray[i]].length);
-            var workoutpoints = workouts[peopleArray[i]].length * 3;
+            var workoutpoints = workouts[peopleArray[i]].length * 5;
             pointsArray.push(shakepoints + workoutpoints);
           }
           console.log('workoutArray', workoutArray);
@@ -123,6 +125,23 @@
             console.log(peopleArray[i]+' (shakes): '+shakes[peopleArray[i]].length);
           }
           $('#loading-spinner').hide();
+          $('#running-calc').append('<table>');
+          $('#running-calc').append('<thead>');
+          $('#running-calc').append('<td>Name</td>');
+          for (var i = 0; i < daysArray.length; i++) {
+            $('#running-calc').append('<td>'+daysArray[i]+'</td>');
+          }
+          $('#running-calc').append('</thead>');
+          for (var person in shakes) {
+            console.log(person);
+            $('#running-calc').append('<tr>');
+            $('#running-calc').append('<td>'+ person +'</td>');
+            for (var i = 0; i < daysArray.length; i++) {
+              $('#running-calc').append('<td>'+daysArray[i]+'</td>');
+            }
+          }
+          
+          
         }, 10000);
         console.log($('.language-javascript.hljs'));
         
