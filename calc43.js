@@ -62,7 +62,7 @@
               var five = DateTime.local().minus({ days: 5 }).toFormat('LLL d');
               var six = DateTime.local().minus({ days: 6 }).toFormat('LLL d');
               var seven = DateTime.local().minus({ days: 7 }).toFormat('LLL d');
-              daysArray = [two, three, four, five, six, seven];
+              daysArray = ["yesterday", two, three, four, five, six, seven];
               var dayStamp = timestamp.split(' at ')[0].split('Created:')[1].trim();
               if ( ! (timestamp.match(/Yesterday/) || timestamp.match(two) || timestamp.match(three) || timestamp.match(four) || timestamp.match(five) || timestamp.match(six) || timestamp.match(seven))) {
                 // dont display
@@ -137,7 +137,9 @@
             $('#running-calc').append('<tr>');
             $('#running-calc').append('<td>'+ person +'</td>');
             for (var i = 0; i < daysArray.length; i++) {
-              $('#running-calc').append('<td>'+daysArray[i]+'</td>');
+              if (daysArray[i] === shakes[person][i]) {
+                $('#running-calc').append('<td>shake</td>');
+              }
             }
           }
           
